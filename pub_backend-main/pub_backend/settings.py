@@ -27,10 +27,7 @@ SECRET_KEY = '7ecl)^=d23s9%mj#j+(*%2w8lsaq_w+p0qk(2-36t^_n*iwe5^v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['pub-api.kucse.kr', '3.37.200.224']
-
-if DEBUG:
-    ALLOWED_HOSTS.append('0.0.0.0')
+ALLOWED_HOSTS = ['pub-api.kucse.kr', '13.62.2.15']
 
 
 # Application definition
@@ -165,7 +162,7 @@ LOGGING = {
 SOLAPI_API_KEY = "NCSQLRF3KUOLTOVD"
 SOLAPI_API_SECRET = "UUD1GSVGCNXQBHWYDQ4LFV6DSR2DRLTJ"
 SOLAPI_SENDER = "01062888032"
-
+'''
 SECURE_HSTS_SECONDS = 31536000  # 1년
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
@@ -175,3 +172,4 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+'''

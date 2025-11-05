@@ -5,13 +5,12 @@ class Reservation(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
     reservation_count = models.IntegerField()
-    time = models.IntegerField(default=120)
+    time = models.IntegerField(default=60)
     created_at = models.DateTimeField(auto_now_add=True)
     memo = models.TextField(blank=True)  # 추가
     entry_time = models.DateTimeField(null=True, blank=True)
     completed = models.BooleanField(default=False)
     assigned_table = models.OneToOneField('Table', null=True, blank=True, on_delete=models.SET_NULL, related_name='reservation')
-    desired_table = models.CharField(max_length=10, null=True, blank=True)
     
     @property
     def exit_time(self):

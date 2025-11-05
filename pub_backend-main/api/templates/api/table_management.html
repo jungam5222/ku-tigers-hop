@@ -207,14 +207,14 @@
     <h2>대기열 (빠른 순)</h2>
     <table>
         <tr>
-            <th>ID</th><th>이름</th><th>전화번호</th><th>테이블</th><th>예약시간</th><th>이용시간</th><th>테이블 배정</th><th>메모</th>
+            <th>ID</th><th>이름</th><th>전화번호</th><th>인원</th><th>예약시간</th><th>이용시간</th><th>테이블 배정</th><th>메모</th>
         </tr>
         {% for r in waiting %}
         <tr>
             <td>{{ r.id }}</td>
             <td>{{ r.name }}</td>
             <td>{{ r.phone }}</td>
-            <td>{{ r.desired_table }}</td>
+            <td>{{ r.reservation_count }}</td>
             <td>{{ r.created_at }}</td>
             <td>{{ r.time }}</td>
             <td>

@@ -18,135 +18,68 @@ def create_reservation(request):
     data = request.data
 
     try:
-        table_no = data.get('table_no')
-        name = data.get('name')
-        phone = data.get('phone', '')
-        reservation_count = data.get('reservation_count')
-        duration = data.get('duration')
-
-        # Additional order flow when phone is empty
-        if phone == "":
-            table = Table.objects.get(number=table_no)
-            reservation = getattr(table, 'reservation', None)
-            if not reservation:
-                return Response({"message": "No active reservation assigned to this table."}, status=status.HTTP_400_BAD_REQUEST)
-
-            order = Order.objects.create(is_paid=False, reservation=reservation)
-            current_time = timezone.now()
-
-            # Add items and set order_start_time
-            for item in data.get('items', []):
-                for _ in range(item.get('quantity', 1)):
-                    OrderItem.objects.create(
-                        order=order,
-                        name=item['name'],
-                        quantity=1,
-                        price=item['price'],
-                        order_start_time=current_time
-                    )
-
-            order.set_price()
-
-            # Group items for SMS and send payment message like add_menu_items
-            grouped_items = defaultdict(lambda: {'quantity': 0, 'total_price': 0})
-            for oi in order.order_items.all():
-                grouped_items[oi.name]['quantity'] += oi.quantity
-                grouped_items[oi.name]['total_price'] += oi.total_price()
-
-            item_lines = [
-                f"{n} (×{d['quantity']})\n - {d['total_price']}원" for n, d in grouped_items.items()
-            ]
-            total_price = order.price
-            message = f"""[ 정보인의 날 주점 주문 안내 ]
-정보인의 날 주점 주문이 완료되었습니다.
-
-{chr(10).join(item_lines)}
-
-총액: {total_price}원
-계좌번호: 토스뱅크 1000-4108-1382 김한성
-
-3분 이내에 입금이 확인되지 않는 경우 주문이 취소될 수 있으니 유의 바랍니다.
-본인이 주문하지 않았거나, 문의사항이 있는 경우 회신 바랍니다."""
-
-            result = send_sms(reservation.phone, message)
-            print(result)
-            order.pay_message_sent = True
-            order.save()
-
-            return Response({
-                "message": "Additional order created successfully",
-                "order_id": order.id,
-            }, status=status.HTTP_201_CREATED)
-
-        # Initial reservation flow when phone is present
-        table = Table.objects.get(number=table_no)
-
         reservation = Reservation.objects.create(
-            name=name,
-            phone=phone,
-            reservation_count=reservation_count,
-            time=duration,
+            name=data['name'],
+            phone=data['phone'],
+            reservation_count=data['reservation_count'],
+            time=data['duration'],
         )
-
-        assigned = False
-        if not getattr(table, 'reservation', None):
-            reservation.assigned_table = table
-            reservation.entry_time = timezone.now()
-            reservation.save()
-            assigned = True
-        else:
-            # Queue: remember the desired table number
-            reservation.desired_table = table.number
-            reservation.save(update_fields=['desired_table'])
 
         order = Order.objects.create(is_paid=False, reservation=reservation)  # Link the order to the reservation
 
-        # Add items. If assigned, set order_start_time immediately; otherwise leave null
-        current_time = timezone.now() if assigned else None
-        for item in data.get('items', []):
-            for _ in range(item.get('quantity', 1)):
-                OrderItem.objects.create(
-                    order=order,
-                    name=item['name'],
-                    quantity=1,
-                    price=item['price'],
-                    order_start_time=current_time
-                )
+        for item in data['items']:
+            if item['name'] == "흑백 세트 A":
+                for _ in range(item['quantity']):
+                    OrderItem.objects.create(
+                        order=order,
+                        name="나야, 짜치대패(세트A)",
+                        quantity=1,  # Each OrderItem has quantity 1
+                        price=18000
+                    )
+                    OrderItem.objects.create(
+                        order=order,
+                        name="이븐하게 익은 소시지(세트A)",
+                        quantity=1,  # Each OrderItem has quantity 1
+                        price=9000
+                    )
+            elif item['name'] == "흑백 세트 B":
+                for _ in range(item['quantity']):
+                    OrderItem.objects.create(
+                        order=order,
+                        name="비빔비빔 골뱅이소면(세트B)",
+                        quantity=1,  # Each OrderItem has quantity 1
+                        price=18000
+                    )
+                    OrderItem.objects.create(
+                        order=order,
+                        name="무..물코기(세트B)",
+                        quantity=1,  # Each OrderItem has quantity 1
+                        price=17000
+                    )
+            else:
+                for _ in range(item['quantity']):  # Create multiple OrderItems for quantity > 1
+                    OrderItem.objects.create(
+                        order=order,
+                        name=item['name'],
+                        quantity=1,  # Each OrderItem has quantity 1
+                        price=item['price']
+                    )
+        OrderItem.objects.create(
+            order=order,
+            name="테이블비",
+            quantity=1,
+            price=5000,
+            finish=True
+        )
+        order.set_price()  # Set the price after adding items
 
-        order.set_price()
-
-        # Send payment guidance SMS for both assigned and waiting reservations
-        grouped_items = defaultdict(lambda: {'quantity': 0, 'total_price': 0})
-        for oi in order.order_items.all():
-            grouped_items[oi.name]['quantity'] += oi.quantity
-            grouped_items[oi.name]['total_price'] += oi.total_price()
-
-        item_lines = [
-            f"{n} (×{d['quantity']})\n - {d['total_price']}원" for n, d in grouped_items.items()
-        ]
-        total_price = order.price
-        message = f"""[ 정보인의 날 주점 주문 안내 ]
-정보인의 날 주점 주문이 완료되었습니다.
-
-{chr(10).join(item_lines)}
-
-총액: {total_price}원
-계좌번호: 토스뱅크 1000-4108-1382 김한성
-
-3분 이내에 입금이 확인되지 않는 경우 주문이 취소될 수 있으니 유의 바랍니다.
-본인이 주문하지 않았거나, 문의사항이 있는 경우 회신 바랍니다."""
-
-        result = send_sms(reservation.phone, message)
+        result = send_sms(reservation.phone, '''[ 석탑대동제 컴퓨터학과 주점 예약 안내 ]
+컴퓨터학과 주점 대기자 명단에 등록되었음을 알려드립니다.
+자리가 발생하는 경우 기재하신 번호로 연락드릴 예정입니다. 전화를 받지 않으실 경우, 다음 대기자에게 순번이 넘어갈 수 있으니 유의하여 주시기 바랍니다.
+감사합니다.''')
         print(result)
-        order.pay_message_sent = True
-        order.save()
 
-        return Response({
-            "message": "Reservation created successfully" + (" and assigned to table" if assigned else " and added to waiting list"),
-            "reservation_id": reservation.id,
-            "order_id": order.id,
-            "assigned": assigned,
-        }, status=status.HTTP_201_CREATED)
+        return Response({"message": "Reservation created successfully", "reservation_id": reservation.id}, status=status.HTTP_201_CREATED)
 
     except Exception as e:
         print(e)
@@ -169,14 +102,47 @@ def add_menu_items(request):
         current_time = timezone.now()
 
         for item in data['items']:
-            for _ in range(item['quantity']):  # Create multiple OrderItems for quantity > 1
-                OrderItem.objects.create(
-                    order=order,
-                    name=item['name'],
-                    quantity=1,  # Each OrderItem has quantity 1
-                    price=item['price'],
-                    order_start_time=current_time  # Set order_start_time for newly added items
-                )
+            if item['name'] == "흑백 세트 A":
+                for _ in range(item['quantity']):
+                    OrderItem.objects.create(
+                        order=order,
+                        name="나야, 짜치대패(세트A)",
+                        quantity=1,  # Each OrderItem has quantity 1
+                        price=18000,
+                        order_start_time=current_time  # Set order_start_time for newly added items
+                    )
+                    OrderItem.objects.create(
+                        order=order,
+                        name="이븐하게 익은 소시지(세트A)",
+                        quantity=1,  # Each OrderItem has quantity 1
+                        price=9000,
+                        order_start_time=current_time  # Set order_start_time for newly added items
+                    )
+            elif item['name'] == "흑백 세트 B":
+                for _ in range(item['quantity']):
+                    OrderItem.objects.create(
+                        order=order,
+                        name="비빔비빔 골뱅이소면(세트B)",
+                        quantity=1,  # Each OrderItem has quantity 1
+                        price=18000,
+                        order_start_time=current_time  # Set order_start_time for newly added items
+                    )
+                    OrderItem.objects.create(
+                        order=order,
+                        name="무..물코기(세트B)",
+                        quantity=1,  # Each OrderItem has quantity 1
+                        price=17000,
+                        order_start_time=current_time  # Set order_start_time for newly added items
+                    )
+            else:
+                for _ in range(item['quantity']):  # Create multiple OrderItems for quantity > 1
+                    OrderItem.objects.create(
+                        order=order,
+                        name=item['name'],
+                        quantity=1,  # Each OrderItem has quantity 1
+                        price=item['price'],
+                        order_start_time=current_time  # Set order_start_time for newly added items
+                    )
 
         order.set_price()  # Set the price after adding items
 
@@ -193,8 +159,8 @@ def add_menu_items(request):
         ]
         total_price = order.price
 
-        message = f"""[ 정보인의 날 주점 주문 안내 ]
-정보인의 날 주점 주문이 완료되었습니다.
+        message = f"""[ 석탑대동제 컴퓨터학과 주점 추가 주문 안내 ]
+컴퓨터학과 주점 추가 주문이 완료되었습니다.
 
 {chr(10).join(item_lines)}
 
@@ -230,8 +196,6 @@ def table_management(request):
             res = Reservation.objects.get(id=rid)
             res.assigned_table = table
             res.entry_time = timezone.now()
-            # Clear desired table once assigned
-            res.desired_table = None
             memo = request.POST.get('memo')
             if memo is not None:
                 res.memo = memo
