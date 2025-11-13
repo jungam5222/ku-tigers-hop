@@ -30,7 +30,7 @@ class AdditionalCartPage extends StatelessWidget {
                 width: 393,
                 height: 591,
                 decoration: const ShapeDecoration(
-                  color: Color(0xFFD9D9D9),
+                  color: Color(0xFFEADFCB),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(35),
@@ -205,7 +205,7 @@ class AdditionalCartPage extends StatelessWidget {
                 width: 332,
                 height: 65,
                 child: Material(
-                  color: service.additionalTotalAmount  > 0 ? Colors.white : const Color(0xFFEEEEEE),
+                  color: service.additionalTotalAmount  > 0 ? const Color(0xFF8D1C3D) : const Color(0xFFEEEEEE),
                   borderRadius: BorderRadius.circular(16),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(16),
@@ -387,7 +387,7 @@ class AdditionalCartPage extends StatelessWidget {
                           fontSize: 20,
                           letterSpacing: -0.40,
                           color: service.additionalTotalAmount > 0
-                              ? const Color(0xFF333333)
+                              ? Colors.white
                               : Colors.black38,
                         ),
                       ),

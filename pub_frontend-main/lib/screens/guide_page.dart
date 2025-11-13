@@ -58,7 +58,7 @@ class _GuidePageState extends State<GuidePage> {
                 child: Container(
                   width: 333, height: 100,
                   decoration: ShapeDecoration(
-                    color: const Color(0xFFD9D9D9),
+                    color: const Color(0xFFEADFCB),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -115,7 +115,7 @@ class _GuidePageState extends State<GuidePage> {
               child: SizedBox(
                 width: 333, height: 65,
                 child: Material(
-                  color: _allChecked ? const Color(0xFFD9D9D9) : const Color(0xFFEEEEEE),
+                  color: _allChecked ? const Color(0xFF8D1C3D) : const Color(0xFFEEEEEE),
                   borderRadius: BorderRadius.circular(16),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(16),
@@ -126,7 +126,7 @@ class _GuidePageState extends State<GuidePage> {
                         style: TextStyle(
                           fontSize: 20, fontWeight: FontWeight.w800,
                           fontFamily: 'Pretendard', letterSpacing: -0.4,
-                          color: Color(0xFF333333),
+                          color: Colors.white,
                         ),
                       ),
                     ),

@@ -135,7 +135,7 @@ class _AdditionalMenuPageState extends State<AdditionalMenuPage> {
                   child: Container(
                     width: 393, height: 591,
                     decoration: const ShapeDecoration(
-                      color: Color(0xFFD9D9D9),
+                      color: Color(0xFFEADFCB),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(35),
@@ -315,14 +315,14 @@ class _AdditionalMenuPageState extends State<AdditionalMenuPage> {
                     child: SizedBox(
                       width: 332, height: 65,
                       child: Material(
-                        color: Colors.white,
+                        color: const Color(0xFF8D1C3D),
                         borderRadius: BorderRadius.circular(16),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(16),
                           onTap: () => Navigator.pushNamed(context, AdditionalCartPage.routeName),
                           child: const Center(
                             child: Text('장바구니로 이동', style: TextStyle(
-                              color: Color(0xFF333333), fontSize: 16,
+                              color: Colors.white, fontSize: 16,
                               fontFamily: 'Pretendard', fontWeight: FontWeight.w800,
                               letterSpacing: -0.40,
                             )),

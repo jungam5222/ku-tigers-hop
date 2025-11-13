@@ -40,7 +40,7 @@ class _CartPageState extends State<CartPage> {
                 width: 393,
                 height: 591,
                 decoration: const ShapeDecoration(
-                  color: Color(0xFFD9D9D9),
+                  color: Color(0xFFEADFCB),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(35),
@@ -248,7 +248,7 @@ class _CartPageState extends State<CartPage> {
                 height: 65,
                 child: Material(
                   color: !_isSubmitting
-                      ? Colors.white
+                      ? const Color(0xFF8D1C3D)
                       : const Color(0xFFEEEEEE),
                   borderRadius: BorderRadius.circular(16),
                   child: InkWell(
@@ -282,7 +282,7 @@ class _CartPageState extends State<CartPage> {
                             '주문하기',
                             style: TextStyle(
                               color: !_isSubmitting
-                                  ? const Color(0xFF333333)
+                                  ? Colors.white
                                   : Colors.black38,
                               fontSize: 20,
                               fontFamily: 'Pretendard',

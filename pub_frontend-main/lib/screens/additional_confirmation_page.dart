@@ -41,7 +41,7 @@ class AdditionalConfirmationPage extends StatelessWidget {
             // 배경 diagonal
             Positioned.fill(
               child: CustomPaint(
-                painter: DiagonalPainter(color: const Color(0xFFD9D9D9)),
+                painter: DiagonalPainter(color: const Color(0xFFEADFCB)),
               ),
             ),
 
@@ -103,7 +103,7 @@ class AdditionalConfirmationPage extends StatelessWidget {
               child: SizedBox(
                 height: 65,
                 child: Material(
-                  color: const Color(0xFFD9D9D9),
+                  color: const Color(0xFF8D1C3D),
                   borderRadius: BorderRadius.circular(16),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(16),
@@ -112,7 +112,7 @@ class AdditionalConfirmationPage extends StatelessWidget {
                       child: Text(
                         '추가 주문',
                         style: TextStyle(
-                          color: Color(0xFF333333),
+                          color: Color.fromARGB(255, 255, 255, 255),
                           fontSize: 20,
                           fontFamily: 'Pretendard',
                           fontWeight: FontWeight.w800,

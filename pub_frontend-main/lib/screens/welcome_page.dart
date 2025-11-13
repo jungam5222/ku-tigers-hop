@@ -63,7 +63,7 @@ class _WelcomePageState extends State<WelcomePage> {
           children: [
             Positioned.fill(
               child: CustomPaint(
-                painter: TopRegionPainter(color: const Color(0xFFD9D9D9)),
+                painter: TopRegionPainter(color: const Color(0xFFEADFCB)),
               ),
             ),
 
@@ -143,7 +143,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 width: 333,
                 height: 65,
                 child: Material(
-                  color: const Color(0xFFD9D9D9),
+                  color: const Color(0xFF8D1C3D),
                   borderRadius: BorderRadius.circular(16),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(16),
@@ -161,7 +161,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           fontWeight: FontWeight.w800,
                           fontFamily: 'Pretendard',
                           letterSpacing: -0.40,
-                          color: Color(0xFF333333),
+                          color: Colors.white,
                         ),
                       ),
                     ),

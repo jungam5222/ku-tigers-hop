@@ -61,7 +61,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
             // 배경 diagonal
             Positioned.fill(
               child: CustomPaint(
-                painter: DiagonalPainter(color: const Color(0xFFD9D9D9)),
+                painter: DiagonalPainter(color: const Color(0xFFEADFCB)),
               ),
             ),
 
@@ -124,7 +124,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                   width: 333,
                   height: 65,
                   child: Material(
-                    color: const Color(0xFFD9D9D9),
+                    color: const Color(0xFF8D1C3D),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -135,7 +135,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                         child: Text(
                           '추가 주문',
                           style: TextStyle(
-                            color: Color(0xFF333333),
+                            color: Color.fromARGB(255, 255, 255, 255),
                             fontSize: 20,
                             fontFamily: 'Pretendard',
                             fontWeight: FontWeight.w800,

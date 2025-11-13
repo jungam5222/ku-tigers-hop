@@ -223,7 +223,7 @@ class _MenuPageState extends State<MenuPage> {
                     width: 393,
                     height: 591,
                     decoration: const ShapeDecoration(
-                      color: Color(0xFFD9D9D9),
+                      color: Color(0xFFEADFCB),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(35),
@@ -441,7 +441,7 @@ class _MenuPageState extends State<MenuPage> {
                       width: 332,
                       height: 65,
                       child: Material(
-                        color: Colors.white,
+                        color:const Color(0xFF8D1C3D),
                         borderRadius: BorderRadius.circular(16),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(16),
@@ -454,7 +454,7 @@ class _MenuPageState extends State<MenuPage> {
                             child: Text(
                               '장바구니로 이동',
                               style: TextStyle(
-                                color: Color(0xFF333333),
+                                color: Colors.white,
                                 fontSize: 16,
                                 fontFamily: 'Pretendard',
                                 fontWeight: FontWeight.w800,
