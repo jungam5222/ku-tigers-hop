@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 class ApiService {
   //static const String baseUrl = 'https://pub-api.kucse.kr'; // Replace with your backend URL
   static const String baseUrl = kReleaseMode
-      ? 'https://여러분의-배포된-백엔드-주소.railway.app' // 나중에 Railway 배포 후 주소 넣기
+      ? 'ku-tigers-hop-backend-production.up.railway.app' // 나중에 Railway 배포 후 주소 넣기
       : 'http://127.0.0.1:8000';
 
   Future<List<MenuItem>> fetchMenuItems() async {
