@@ -5,10 +5,9 @@ import 'package:jujeom_app/models/waiting_queue.dart';
 import 'package:flutter/foundation.dart';
 
 class ApiService {
-  //static const String baseUrl = 'https://pub-api.kucse.kr'; // Replace with your backend URL
-  static const String baseUrl = kReleaseMode
-      ? 'ku-tigers-hop-backend-production.up.railway.app' // 나중에 Railway 배포 후 주소 넣기
-      : 'http://127.0.0.1:8000';
+  //static const String baseUrl = 'https://pub-api.kucse.kr';
+  // 또는 Railway:
+  static const String baseUrl = 'https://ku-tigers-hop-backend-production.up.railway.app';
 
   Future<List<MenuItem>> fetchMenuItems() async {
     final res = await http.get(Uri.parse('$baseUrl/api/menu'));
@@ -28,8 +27,8 @@ class ApiService {
     }
     final list = jsonDecode(utf8.decode(res.bodyBytes)) as List;
     return list
-      .map((e) => MenuItem.fromJson(e as Map<String, dynamic>))
-      .toList();
+        .map((e) => MenuItem.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 
   Future<WaitingQueue> fetchWaitingQueue() async {
@@ -61,7 +60,7 @@ class ApiService {
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(additionalOrderData), // 전체 데이터를 전송
+      body: jsonEncode(additionalOrderData),
     );
 
     if (response.statusCode == 201) {
@@ -71,8 +70,8 @@ class ApiService {
     }
   }
 }
+
 class TableReservation {
-  
   final String tableNumber;
   final bool hasReservation;
   final String? name;
@@ -96,9 +95,9 @@ class TableReservation {
 }
 
 extension ApiServiceTable on ApiService {
-  static const String baseUrl = 'https://pub-api.kucse.kr';
   Future<TableReservation> fetchTable(int tableNo) async {
-    final url = Uri.parse('$baseUrl/api/table/$tableNo/');
+    // 🔥 여기서 ApiService.baseUrl 사용
+    final url = Uri.parse('${ApiService.baseUrl}/api/table/$tableNo/');
     final res = await http.get(url);
     if (res.statusCode != 200) {
       throw Exception('테이블 조회 실패: ${res.statusCode}');
