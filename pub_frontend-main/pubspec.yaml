@@ -62,6 +62,29 @@ flutter:
 
   assets:
     - assets/publogo.png
+    - bajirak_suljjim.jpg
+    - beef_sashimi.jpg
+    - buffalo_with_french_fries.jpg
+    - cheese_egg_mari.jpg
+    - cheese_jeyook.jpg
+    - corn_cheese_buldak.jpg
+    - dakbal.jpg
+    - hwangdo.png
+    - jeyook.jpg
+    - kangjung_with_french_fries.jpg
+    - karaage_with_french_fries.jpg
+    - kimchi_cheese_osam_bulgogi.jpg
+    - kimchi_pork_bibim_noodle.jpg
+    - kkubjil_fries.jpg
+    - mandu_soup.jpg
+    - nagasaki_jjambbong.jpg
+    - pineapple_sherbet.jpg
+    - sausage.jpg
+    - tofu_kimchi.jpg
+    - together_french_fries.jpg
+    - together_fries.jpg
+    - together_sausage.jpg
+    - odengtang.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
