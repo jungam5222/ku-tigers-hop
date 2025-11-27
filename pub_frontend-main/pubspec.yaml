@@ -85,6 +85,16 @@ flutter:
     - assets/together_fries.jpg
     - assets/together_sausage.jpg
     - assets/odengtang.jpg
+    - assets/kiwoom.jpg
+    - assets/lg.jpg
+    - assets/lotte.jpg
+    - assets/ssg.jpg
+    - assets/samsung.jpg
+    - assets/kia.jpg
+    - assets/hanwha.jpg
+    - assets/doosan.jpg
+    - assets/kt.jpg
+    - assets/nc.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
