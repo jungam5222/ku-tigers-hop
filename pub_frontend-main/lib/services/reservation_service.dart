@@ -17,7 +17,6 @@ class ReservationService extends ChangeNotifier {
 
   /// 장바구니 목록
   List<CartItem> cart = [];
-
   List<CartItem> additionalCart = [];
 
   /// 테이블비
@@ -26,6 +25,17 @@ class ReservationService extends ChangeNotifier {
   /// 사용자 정보
   String name = '';
   String phone = '';
+
+  /// 이름/전화번호 설정 (RESERVATION 화면에서 호출)
+  void setName(String value) {
+    name = value;
+    notifyListeners();
+  }
+
+  void setPhone(String value) {
+    phone = value;
+    notifyListeners();
+  }
 
   /// 예약 인원 수
   int reservationCount = 1;
@@ -47,7 +57,7 @@ class ReservationService extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// 예약 페이지에서 팀 1 증가
+  /// 예약 페이지에서 팀 1 증가 (로컬 상태)
   void reserveTeam() {
     waitingTeams++;
     html.window.localStorage['waitingTeams'] = waitingTeams.toString();
@@ -72,7 +82,6 @@ class ReservationService extends ChangeNotifier {
     notifyListeners();
   }
 
-
   /// 장바구니 수량 증가
   void increment(int idx) {
     cart[idx].quantity++;
@@ -92,9 +101,9 @@ class ReservationService extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// 장바구니 총액 계산
+  /// 장바구니 총액 계산 (메뉴 + 테이블비)
   int get totalAmount =>
-      cart.fold(0, (sum, ci) => sum + ci.item.price * ci.quantity)+ tableFee;
+      cart.fold(0, (sum, ci) => sum + ci.item.price * ci.quantity) + tableFee;
 
   /// ── 추가 주문 전용 메서드들 ─────────────────────────────────
 
@@ -140,50 +149,57 @@ class ReservationService extends ChangeNotifier {
     required String name,
     required String phone,
     required int reservationCount,
-    required int duration, // 추가
+    required int duration,
   }) async {
-    
-
     // 첫 주문 데이터 생성
     final orderData = {
       'name': name,
       'phone': phone,
       'reservation_count': reservationCount,
-      'duration': duration, // 추가
+      'duration': duration,
       'total_amount': totalAmount,
-      'items': cart.map((ci) => {
-        'name': ci.item.name,
-        'quantity': ci.quantity,
-        'price': ci.item.price,
-      }).toList(),
+      'items': cart
+          .map((ci) => {
+                'name': ci.item.name,
+                'quantity': ci.quantity,
+                'price': ci.item.price,
+              })
+          .toList(),
     };
 
     try {
+      print('[ReservationService] submitInitialOrder called');
+      print('[ReservationService] orderData = $orderData');
+
       // ApiService를 사용해 첫 주문 데이터 전송
       final apiService = ApiService();
       await apiService.sendReservation(orderData);
+
+      print('[ReservationService] sendReservation success');
 
       // 로컬 상태 업데이트
       html.window.localStorage['hasReserved'] = 'true';
       waitingTeams++;
       notifyListeners();
       return true;
-    } catch (e) {
-      print('Failed to submit initial order: $e');
+    } catch (e, st) {
+      print('[ReservationService] Failed to submit initial order: $e');
+      print(st);
       return false;
     }
   }
 
   /// 추가 주문 전송 (메뉴만)
   Future<bool> submitAdditionalOrder({String? tableNo}) async {
-    
     final additionalOrderData = {
       'table_no': tableNo ?? 'unknown',
-      'items': additionalCart.map((ci) => {
-            'name': ci.item.name,
-            'quantity': ci.quantity,
-            'price': ci.item.price,
-          }).toList(),
+      'items': additionalCart
+          .map((ci) => {
+                'name': ci.item.name,
+                'quantity': ci.quantity,
+                'price': ci.item.price,
+              })
+          .toList(),
     };
 
     try {
@@ -213,4 +229,3 @@ class CartItem {
   int quantity;
   CartItem({required this.item, this.quantity = 1});
 }
-
