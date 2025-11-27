@@ -62,11 +62,6 @@ flutter:
 
   assets:
     - assets/publogo.png
-    - assets/someon.jpg
-    - assets/jjachidaepae.png
-    - assets/sausage.jpeg
-    - assets/uhmook.jpg
-    - assets/hwangdo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
