@@ -95,6 +95,8 @@ flutter:
     - assets/doosan.jpg
     - assets/kt.jpg
     - assets/nc.jpg
+    - assets/beer.jpg
+    - assets/soju.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
