@@ -62,29 +62,29 @@ flutter:
 
   assets:
     - assets/publogo.png
-    - bajirak_suljjim.jpg
-    - beef_sashimi.jpg
-    - buffalo_with_french_fries.jpg
-    - cheese_egg_mari.jpg
-    - cheese_jeyook.jpg
-    - corn_cheese_buldak.jpg
-    - dakbal.jpg
-    - hwangdo.png
-    - jeyook.jpg
-    - kangjung_with_french_fries.jpg
-    - karaage_with_french_fries.jpg
-    - kimchi_cheese_osam_bulgogi.jpg
-    - kimchi_pork_bibim_noodle.jpg
-    - kkubjil_fries.jpg
-    - mandu_soup.jpg
-    - nagasaki_jjambbong.jpg
-    - pineapple_sherbet.jpg
-    - sausage.jpg
-    - tofu_kimchi.jpg
-    - together_french_fries.jpg
-    - together_fries.jpg
-    - together_sausage.jpg
-    - odengtang.jpg
+    - assets/bajirak_suljjim.jpg
+    - assets/beef_sashimi.jpg
+    - assets/buffalo_with_french_fries.jpg
+    - assets/cheese_egg_mari.jpg
+    - assets/cheese_jeyook.jpg
+    - assets/corn_cheese_buldak.jpg
+    - assets/dakbal.jpg
+    - assets/hwangdo.png
+    - assets/jeyook.jpg
+    - assets/kangjung_with_french_fries.jpg
+    - assets/karaage_with_french_fries.jpg
+    - assets/kimchi_cheese_osam_bulgogi.jpg
+    - assets/kimchi_pork_bibim_noodle.jpg
+    - assets/kkubjil_fries.jpg
+    - assets/mandu_soup.jpg
+    - assets/nagasaki_jjambbong.jpg
+    - assets/pineapple_sherbet.jpg
+    - assets/sausage.jpg
+    - assets/tofu_kimchi.jpg
+    - assets/together_french_fries.jpg
+    - assets/together_fries.jpg
+    - assets/together_sausage.jpg
+    - assets/odengtang.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
