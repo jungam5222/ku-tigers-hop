@@ -7,9 +7,9 @@ class GuidePage extends StatefulWidget {
   const GuidePage({
     super.key,
     this.guideTexts = const [
-      '이용시간 60분 / 90분 중 선택 가능',
-      '외부 음식 반입 불가',
-      '테이블비 5000원',
+      '계좌이체까지 꼭 완료해주셔야 주문이 완료됩니다.',
+      '과음 등 안전에 항상 주의해주시길 바랍니다.',
+      '추가 문의사항은 직원에게 문의 바랍니다.',
     ],
   });
 

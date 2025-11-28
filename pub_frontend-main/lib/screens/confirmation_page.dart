@@ -86,7 +86,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
               left: 91,
               top: 140,
               child: Text(
-                '문자(SMS)를 확인해주세요',
+                '계좌이체까지 해주셔야 주문이 완료됩니다.\n계좌번호: KB국민은행 93800201556124 심태윤',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,

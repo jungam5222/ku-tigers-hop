@@ -282,82 +282,82 @@ class _ReservationPageState extends State<ReservationPage> {
             ),
 
             // 시간 선택: 초기엔 둘 다 비활성화 (0)
-            Positioned(
-              left: 30, right: 30, top: 635,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() => _selectedDuration = 60);
-                        service.setMinOrder(25000);
-                        service.setDuration(60);
-                      },
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: _selectedDuration == 60
-                              ? Colors.white
-                              : const Color(0xFFEEEEEE),
-                          border: Border.all(
-                            color: _selectedDuration == 60
-                                ? const Color(0xFFBBBBBB)
-                                : const Color(0xFFDBDBDB),
-                          ),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Center(
-                          child: Text(
-                            '60분',
-                            style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w700,
-                              color: _selectedDuration == 60
-                                  ? Colors.black
-                                  : const Color(0xFF777777),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() => _selectedDuration = 90);
-                        service.setMinOrder(40000);
-                        service.setDuration(90);
-                      },
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: _selectedDuration == 90
-                              ? Colors.white
-                              : const Color(0xFFEEEEEE),
-                          border: Border.all(
-                            color: _selectedDuration == 90
-                                ? const Color(0xFFBBBBBB)
-                                : const Color(0xFFDBDBDB),
-                          ),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Center(
-                          child: Text(
-                            '90분',
-                            style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w700,
-                              color: _selectedDuration == 90
-                                  ? Colors.black
-                                  : const Color(0xFF777777),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+//            Positioned(
+//              left: 30, right: 30, top: 635,
+//              child: Row(
+//                children: [
+//                  Expanded(
+//                    child: GestureDetector(
+//                      onTap: () {
+//                        setState(() => _selectedDuration = 60);
+//                        service.setMinOrder(25000);
+//                        service.setDuration(60);
+//                      },
+//                      child: Container(
+//                        height: 50,
+//                        decoration: BoxDecoration(
+//                          color: _selectedDuration == 60
+//                              ? Colors.white
+//                              : const Color(0xFFEEEEEE),
+//                          border: Border.all(
+//                            color: _selectedDuration == 60
+//                                ? const Color(0xFFBBBBBB)
+//                                : const Color(0xFFDBDBDB),
+//                          ),
+//                          borderRadius: BorderRadius.circular(16),
+//                        ),
+//                        child: Center(
+//                          child: Text(
+//                            '60분',
+//                            style: TextStyle(
+//                              fontSize: 18, fontWeight: FontWeight.w700,
+//                              color: _selectedDuration == 60
+//                                  ? Colors.black
+//                                  : const Color(0xFF777777),
+//                            ),
+//                          ),
+//                        ),
+//                      ),
+//                    ),
+//                  ),
+//                  const SizedBox(width: 12),
+//                  Expanded(
+//                    child: GestureDetector(
+//                      onTap: () {
+//                        setState(() => _selectedDuration = 90);
+//                        service.setMinOrder(40000);
+//                        service.setDuration(90);
+//                      },
+//                      child: Container(
+//                        height: 50,
+//                        decoration: BoxDecoration(
+//                          color: _selectedDuration == 90
+//                              ? Colors.white
+//                              : const Color(0xFFEEEEEE),
+//                          border: Border.all(
+//                            color: _selectedDuration == 90
+//                                ? const Color(0xFFBBBBBB)
+//                                : const Color(0xFFDBDBDB),
+//                          ),
+//                          borderRadius: BorderRadius.circular(16),
+//                        ),
+//                        child: Center(
+//                          child: Text(
+//                            '90분',
+//                            style: TextStyle(
+//                              fontSize: 18, fontWeight: FontWeight.w700,
+//                              color: _selectedDuration == 90
+//                                  ? Colors.black
+//                                  : const Color(0xFF777777),
+//                            ),
+//                          ),
+//                        ),
+//                      ),
+//                    ),
+//                  ),
+//                ],
+//              ),
+//            ),
 
             // 최소 주문금액
             if (_selectedDuration != 0)
