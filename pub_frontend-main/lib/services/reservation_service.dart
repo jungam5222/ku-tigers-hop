@@ -103,7 +103,7 @@ class ReservationService extends ChangeNotifier {
 
   /// 장바구니 총액 계산 (메뉴 + 테이블비)
   int get totalAmount =>
-      cart.fold(0, (sum, ci) => sum + ci.item.price * ci.quantity) + tableFee;
+      cart.fold(0, (sum, ci) => sum + ci.item.price * ci.quantity) + (tableFee * reservationCount);
 
   /// ── 추가 주문 전용 메서드들 ─────────────────────────────────
 
