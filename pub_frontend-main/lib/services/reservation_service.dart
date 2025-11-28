@@ -190,7 +190,7 @@ class ReservationService extends ChangeNotifier {
   }
 
  /// 추가 주문 전송 (메뉴 + 테이블 번호)
-Future<bool> submitAdditionalOrder({required int tableNo}) async {
+Future<bool> submitAdditionalOrder({String? tableNo}) async {
   final additionalOrderData = {
     'table_no': tableNo,
     'items': additionalCart
