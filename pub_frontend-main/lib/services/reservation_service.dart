@@ -189,30 +189,30 @@ class ReservationService extends ChangeNotifier {
     }
   }
 
-  /// 추가 주문 전송 (메뉴만)
-  Future<bool> submitAdditionalOrder({String? tableNo}) async {
-    final additionalOrderData = {
-      'table_no': tableNo ?? 'unknown',
-      'items': additionalCart
-          .map((ci) => {
-                'name': ci.item.name,
-                'quantity': ci.quantity,
-                'price': ci.item.price,
-              })
-          .toList(),
-    };
+ /// 추가 주문 전송 (메뉴 + 테이블 번호)
+Future<bool> submitAdditionalOrder({required int tableNo}) async {
+  final additionalOrderData = {
+    'table_no': tableNo,
+    'items': additionalCart
+        .map((ci) => {
+              'name': ci.item.name,
+              'quantity': ci.quantity,
+              'price': ci.item.price,
+            })
+        .toList(),
+  };
 
-    try {
-      await ApiService().sendMenuItems(additionalOrderData);
-      waitingTeams++;
-      // 전송 후 장바구니 비우기
-      clearAdditionalCart();
-      return true;
-    } catch (e) {
-      print('Failed to submit additional order: $e');
-      return false;
-    }
+  try {
+    await ApiService().sendMenuItems(additionalOrderData);
+    waitingTeams++;
+    clearAdditionalCart();  // 전송 후 장바구니 비우기
+    return true;
+  } catch (e) {
+    print('Failed to submit additional order: $e');
+    return false;
   }
+}
+
 
   /// 예약 시간 설정 (60/90분)
   int _duration = 0;
