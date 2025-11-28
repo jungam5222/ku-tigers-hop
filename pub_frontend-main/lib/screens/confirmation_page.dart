@@ -83,7 +83,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
 
             // 서브 텍스트
             const Positioned(
-              left: 91,
+              left: 60,
               top: 140,
               child: Text(
                 '계좌이체까지 해주셔야 주문이 완료됩니다.\n계좌번호: KB국민은행 93800201556124 심태윤',

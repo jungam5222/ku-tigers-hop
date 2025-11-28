@@ -7,8 +7,8 @@ class GuidePage extends StatefulWidget {
   const GuidePage({
     super.key,
     this.guideTexts = const [
-      '계좌이체까지 꼭 완료해주셔야 주문이 완료됩니다.',
-      '과음 등 안전에 항상 주의해주시길 바랍니다.',
+      '계좌이체를 완료해주셔야 주문이 완료됩니다.',
+      '과음 등 안전에 주의해주시길 바랍니다.',
       '추가 문의사항은 직원에게 문의 바랍니다.',
     ],
   });

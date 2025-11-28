@@ -20,7 +20,7 @@ class ReservationService extends ChangeNotifier {
   List<CartItem> additionalCart = [];
 
   /// 테이블비
-  static const int tableFee = 5000;
+  static const int tableFee = 3000;
 
   /// 사용자 정보
   String name = '';
@@ -44,7 +44,7 @@ class ReservationService extends ChangeNotifier {
   bool hasConfirmed = false;
 
   /// 최소 주문 금액 (동적으로 변경)
-  int _minOrder = 30000;
+  int _minOrder = 20000;
   int get minOrder => _minOrder;
   void setMinOrder(int value) {
     _minOrder = value;

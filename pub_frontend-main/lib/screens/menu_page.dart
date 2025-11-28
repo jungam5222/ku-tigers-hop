@@ -121,7 +121,7 @@ class _MenuPageState extends State<MenuPage> {
                           ),
                         ),
                         Text(
-                          '5,000원',
+                          '3,000원',
                           style: TextStyle(
                             color: Color(0xFF333333),
                             fontSize: 16,

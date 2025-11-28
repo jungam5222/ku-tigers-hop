@@ -364,7 +364,7 @@ class _ReservationPageState extends State<ReservationPage> {
               Positioned(
                 left: 0, right: 0, top: 700,
                 child: Text(
-                  '최소 주문금액: 없음.',
+                  '최소 주문금액: 20000원',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 16, fontFamily: 'Pretendard',
@@ -379,9 +379,7 @@ class _ReservationPageState extends State<ReservationPage> {
               child: SizedBox(
                 width: 332, height: 65,
                 child: ElevatedButton(
-                  onPressed: isFormValid
-                      ? () => Navigator.pushNamed(context, '/menu')
-                      : null,
+                  onPressed: () => Navigator.pushNamed(context, '/menu'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         isFormValid ? const Color(0xFF8D1C3D) : const Color(0xFFEEEEEE),
