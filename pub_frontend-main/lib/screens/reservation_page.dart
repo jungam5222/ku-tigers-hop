@@ -17,7 +17,7 @@ class _ReservationPageState extends State<ReservationPage> {
   late TextEditingController nameController;
   late TextEditingController phoneController;
   // 처음에는 선택된 시간이 없도록 0으로 초기화
-  int _selectedDuration = 0;
+  int _selectedDuration = 1;
 
   @override
   void initState() {
@@ -46,7 +46,7 @@ class _ReservationPageState extends State<ReservationPage> {
     final service = context.watch<ReservationService>();
     final quantity = service.reservationCount;
     final isFormValid =
-        service.name.trim().isNotEmpty && service.phone.trim().isNotEmpty && _selectedDuration != 0;
+        service.name.trim().isNotEmpty && service.phone.trim().isNotEmpty;
     // minOrder는 service.minOrder로 대체
     final minOrder = service.minOrder;
     final screenW = MediaQuery.of(context).size.width;
@@ -77,7 +77,7 @@ class _ReservationPageState extends State<ReservationPage> {
               left: 0, right: 0, top: 110,
               child: Center(
                 child: Image.asset(
-                  '/publogo.png',
+                  'assets/publogo.png',
                   width: 120, height: 120, fit: BoxFit.contain,
                   errorBuilder: (_, __, ___) =>
                       const Icon(Icons.local_bar, size: 60, color: Colors.black26),
