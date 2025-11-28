@@ -68,57 +68,57 @@ class _WelcomePageState extends State<WelcomePage> {
             ),
 
             // ① API 로딩 / 에러 / 정상 데이터 렌더링
-            FutureBuilder<WaitingQueue>(
-              future: _queueFuture,
-              builder: (context, snap) {
-                Widget content;
-                if (snap.connectionState != ConnectionState.done) {
-                  content = const Center(child: CircularProgressIndicator());
-                } else if (snap.hasError) {
-                  content = Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      '대기열 정보 로드 실패:\n${snap.error}',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.red),
-                    ),
-                  );
-                } else {
-                  final wq = snap.data!;
-                  content = Column(
-                    children: [
-                      const SizedBox(height: 95),
-                      Text(
-                        '현재 대기 팀: ${wq.queueLength}팀',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w800,
-                          fontFamily: 'Pretendard',
-                          letterSpacing: -0.60,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        '예상 대기 시간: ${_formatDuration(wq.estimatedWaitMinutes)}',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: 'Pretendard',
-                          letterSpacing: -0.40,
-                        ),
-                      ),
-                    ],
-                  );
-                }
-
-                return Positioned(
-                  top: 0, left: 0, right: 0,
-                  child: content,
-                );
-              },
-            ),
+            //FutureBuilder<WaitingQueue>(
+            //  future: _queueFuture,
+            //  builder: (context, snap) {
+            //    Widget content;
+            //    if (snap.connectionState != ConnectionState.done) {
+            //      content = const Center(child: CircularProgressIndicator());
+            //    } else if (snap.hasError) {
+            //      content = Padding(
+            //        padding: const EdgeInsets.symmetric(horizontal: 16),
+            //        child: Text(
+            //          '대기열 정보 로드 실패:\n${snap.error}',
+            //          textAlign: TextAlign.center,
+            //          style: const TextStyle(color: Colors.red),
+            //        ),
+            //      );
+            //    } else {
+            //      final wq = snap.data!;
+            //      content = Column(
+            //        children: [
+            //          const SizedBox(height: 95),
+            //          Text(
+            //            '현재 대기 팀: ${wq.queueLength}팀',
+            //            textAlign: TextAlign.center,
+            //            style: const TextStyle(
+            //              fontSize: 30,
+            //              fontWeight: FontWeight.w800,
+            //              fontFamily: 'Pretendard',
+            //              letterSpacing: -0.60,
+            //            ),
+            //          ),
+            //          const SizedBox(height: 12),
+            //          Text(
+            //            '예상 대기 시간: ${_formatDuration(wq.estimatedWaitMinutes)}',
+            //            textAlign: TextAlign.center,
+            //            style: const TextStyle(
+            //              fontSize: 20,
+            //              fontWeight: FontWeight.w700,
+            //              fontFamily: 'Pretendard',
+            //              letterSpacing: -0.40,
+            //            ),
+            //          ),
+            //        ],
+            //      );
+            //    }
+//
+            //    return Positioned(
+            //      top: 0, left: 0, right: 0,
+            //      child: content,
+            //    );
+            //  },
+            //),
 
             // ② 중앙 로고
             Positioned.fill(

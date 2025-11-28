@@ -83,10 +83,10 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
 
             // 서브 텍스트
             const Positioned(
-              left: 60,
+              left: 5,
               top: 140,
               child: Text(
-                '계좌이체까지 해주셔야 주문이 완료됩니다.\n계좌번호: KB국민은행 93800201556124 심태윤',
+                '  계좌이체까지 해주셔야 주문이 완료됩니다.\n계좌번호: KB국민은행 93800201556124 심태윤',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -147,44 +147,44 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                   ),
                 ),
               )
-            else
-              // 대기 팀 정보는 API를 통해 동적으로 가져오기
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 60,
-                child: FutureBuilder<WaitingQueue>(
-                  future: _queueFuture,
-                  builder: (context, snap) {
-                    if (snap.connectionState != ConnectionState.done) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    if (snap.hasError) {
-                      return Center(
-                        child: Text(
-                          '대기열 로드 실패: ${snap.error}',
-                          style: const TextStyle(color: Colors.red),
-                        ),
-                      );
-                    }
-                    final wq = snap.data!;
-                    return Center(
-                      child: Text(
-                        '현재 대기 팀: ${wq.queueLength}팀\n'
-                        '예상 대기시간: ${wq.estimatedWaitMinutes}분',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Pretendard',
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: -0.40,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+            //else
+            //  // 대기 팀 정보는 API를 통해 동적으로 가져오기
+            //  Positioned(
+            //    left: 0,
+            //    right: 0,
+            //    bottom: 60,
+            //    child: FutureBuilder<WaitingQueue>(
+            //      future: _queueFuture,
+            //      builder: (context, snap) {
+            //        if (snap.connectionState != ConnectionState.done) {
+            //          return const Center(child: CircularProgressIndicator());
+            //        }
+            //        if (snap.hasError) {
+            //          return Center(
+            //            child: Text(
+            //              '대기열 로드 실패: ${snap.error}',
+            //              style: const TextStyle(color: Colors.red),
+            //            ),
+            //          );
+            //        }
+            //        final wq = snap.data!;
+            //        return Center(
+            //          child: Text(
+            //            '현재 대기 팀: ${wq.queueLength}팀\n'
+            //            '예상 대기시간: ${wq.estimatedWaitMinutes}분',
+            //            textAlign: TextAlign.center,
+            //            style: const TextStyle(
+            //              color: Colors.black,
+            //              fontSize: 18,
+            //              fontFamily: 'Pretendard',
+            //              fontWeight: FontWeight.w600,
+            //              letterSpacing: -0.40,
+            //            ),
+            //          ),
+            //        );
+            //      },
+            //    ),
+            //  ),
           ],
         ),
       ),
