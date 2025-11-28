@@ -199,7 +199,7 @@ class _CartPageState extends State<CartPage> {
               left: 280,
               top: 661,
               child: Text(
-                '3,000원',
+                '인당 3,000원',
                 style: const TextStyle(
                   color: Color(0xFF464646),
                   fontSize: 20,
